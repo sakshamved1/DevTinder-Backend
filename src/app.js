@@ -2,36 +2,30 @@ const express = require("express");
 
 const app = express(); //Created server
 
+app.use("/user", (req, res) => {
+  res.send("HAHAHAHAAHAHHAHA!!");
+});
 
+app.get("/user", (req, res) => {
+  res.send({ Fname: "James", Lname: "Bond", City: "Jaipur" });
+  console.log("SUCCESSFULLY GET THE USER DATA");
+});
 
-// app.use((req, res) => {
-//     res.send("Hello from Server")
-// })
+app.post("/user", (req, res) => {
+  //Saving to DB
+  res.send("SUCCESSFULLY UPDATED THE DATA USING POST REQUEST");
+});
 
-app.use("/test",(req, res) => {
-    res.send("Hello from Test server")
-})
-
-app.use("/hello",(req, res) => {
-    res.send("Hello  server")
-})
-
-
-app.use("/dashboard",(req, res) => {
-    res.send("Hello from dashboard")
-})
-
-
-
-
-
-
-
-app.listen(7777, () => {
-    console.log("Server is successfully listening to port 7777");
-    
+app.delete("/user", (req, res) => {
+  res.send("Deleted  Successfully");
 });
 
 
+app.use("/test", (req, res) => {
+    res.send("Hello from test server!!");
+  });
+  
 
-
+app.listen(7777, () => {
+  console.log("Server is successfully listening to port 7777");
+});
