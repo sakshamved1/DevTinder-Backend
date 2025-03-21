@@ -1,5 +1,3 @@
-
-
     - Create a Respository
     - Intialize the repository
     - node_modules, packahge.json, package-lock.json
@@ -22,10 +20,10 @@
     - Order of the routes matter alot
     - Install postman app and make a workspace/collection > Test api call
     - Write  logic to handle GET, POST, PATCH, DELETE, API calls and test them on Postman
-    -
-    -
-    -
-    -
+    - Explore routing and use of ? ,+,  (), * in routes
+    - use of regex in the routes /a/ , /.*fly$/
+    - reading the Query params
+    - reading the dynamic routes
     -
     -
     -
