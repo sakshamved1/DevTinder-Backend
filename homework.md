@@ -24,7 +24,7 @@
     - use of regex in the routes /a/ , /.*fly$/
     - reading the Query params
     - reading the dynamic routes
-    
+
 
 
     - Multiple Route handlers - Play with code
@@ -36,3 +36,4 @@
     - Difference between app.use and app.all
     - Write a dummy auth middleware for admin
     - Write a dummy auth middleware for all user except /user/login
+    - Error handling using app.use("/", (err,req,res,next)= {})
