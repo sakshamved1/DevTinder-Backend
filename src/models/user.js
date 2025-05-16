@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
- 
 
 // Created new schema
 const userSchema = new mongoose.Schema({
@@ -21,8 +20,10 @@ const userSchema = new mongoose.Schema({
   gender: {
     type: String,
   },
+  id: {
+    type: String,
+  },
 });
-
 
 // created User model
 module.exports = mongoose.model("User", userSchema);
