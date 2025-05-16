@@ -50,3 +50,8 @@
     - Push some documents using API calls from Postman
     - Error Handling using try,catch
 
+# E-07 Diving into the Api's
+
+    - Difference between Javascript Object & Json
+    - Add the express.json middleware to the App
+    - Make your signup API dynamic to receive data from the End user
