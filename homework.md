@@ -26,14 +26,27 @@
     - reading the dynamic routes
 
 
-
+    E-05 Middleware & Route Handlers
     - Multiple Route handlers - Play with code
     - next()
     - next function and errors along with res.send()
     - app.use("/route", rH, [rH2, rH3], rH4, rh5);
+
     - What is a middleware ? Why do we need it
     - How express JS basically handles request behind the scene
     - Difference between app.use and app.all
     - Write a dummy auth middleware for admin
     - Write a dummy auth middleware for all user except /user/login
-    - Error handling using app.use("/", (err,req,res,next)= {})
+    - Error handling using app.use("/", (err,req,res,next)= {}) i.e. Wild Card error handling
+
+# E-06 Database Schema Model & mangoose
+
+    - Create a cluster on mongodb
+    - install mongoose liberary
+    - connect Your Application to Database "Connection url"/devTinder
+    - call the connectDB function and connect to Databse before starting application on 7777
+    - Create a user Schemea & userModel
+    - Create POST /signup API to add data to database
+    - Push some documents using API calls from Postman
+    - Error Handling using try,catch
+
