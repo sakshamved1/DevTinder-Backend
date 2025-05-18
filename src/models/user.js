@@ -20,9 +20,6 @@ const userSchema = new mongoose.Schema({
   gender: {
     type: String,
   },
-  id: {
-    type: String,
-  },
 });
 
 // created User model
