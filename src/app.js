@@ -15,7 +15,7 @@ app.post("/signup", async (req, res) => {
     await user.save();
     res.send("User added successfully");
   } catch (err) {
-    res.status(400).send("Failed to add User");
+    res.status(400).send("Failed to add User : " + err.message);
   }
 });
 
@@ -67,37 +67,38 @@ app.delete("/user", async (req, res) => {
 });
 
 // Update the user using id
-// app.patch("/user", async (req, res) => {
-//   const userId = req.body.id;
-
-//   const data = req.body;
-
-//   try {
-//     const user = await User.findByIdAndUpdate(userId, data, {
-//       returnDocument: "before",
-//     });
-//     res.send("User Updated succesfully");
-//   } catch (err) {
-//     res.status(400).send("Failed to update User");
-//   }
-// });
-
-
-//Update the user using Email
 app.patch("/user", async (req, res) => {
-  const userEmail = req.body.email;
-  console.log(userEmail);
+  const userId = req.body.id;
+
+  const data = req.body;
 
   try {
-    const query = { email: userEmail };
-
-    const user = await User.findOneAndUpdate(query, { firstName: "Sonilal" }, {returnDocument : "before"});
-
-    res.send("user updated successfullly using email");
+    const user = await User.findByIdAndUpdate(userId, data, {
+      returnDocument: "after",
+      runValidators: true,
+    });
+    console.log(user);
+    
+    res.send("User Updated succesfully");
   } catch (err) {
-    res.status(400).send("Failed to add User");
+    res.status(400).send("Failed to update User :    " + err.message);
   }
 });
+
+// //Update the user using Email
+// app.patch("/user", async (req, res) => {
+//   const userEmail = req.body.email;
+
+//   try {
+//     const query = { email: userEmail };
+
+//     const user = await User.findOneAndUpdate(query, { firstName: "Sonilal" }, {returnDocument : "before"});
+
+//     res.send("user updated successfullly using email");
+//   } catch (err) {
+//     res.status(400).send("Failed to add User");
+//   }
+// });
 
 // Feed API - GET /feed - Get all the users from Database
 app.get("/feed", async (req, res) => {

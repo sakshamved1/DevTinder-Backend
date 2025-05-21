@@ -67,3 +67,13 @@
     - Explore mongoose Documentation for Model methods
     - What are option in Mode. findOneAndUpdate method, explore more about it
     - API - Update the user using email ID
+
+
+# E-08 Data Sanitization & Schema
+
+    - Explore SchemaType Options form documenatation
+    - add required, unique. lowercase, min, minLength, trim
+    - Add default
+    - Create a custom Validate function for gender
+    - Improve DB schema - Put all appropriate Validations on each field in Schema
+    - Add TImeStamps to the user Schema
