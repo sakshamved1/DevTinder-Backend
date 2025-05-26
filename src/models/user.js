@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const validator = require("validator");
 
 // Created new schema
 const userSchema = new mongoose.Schema(
@@ -17,11 +18,21 @@ const userSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
       trim: true,
+      validate(value) {
+        if (!validator.isEmail(value)) {
+          throw new Error("Email id Is not Valid :   " + value);
+        }
+      },
     },
     password: {
       type: String,
       required: true,
       trim: true,
+      validate(value) {
+        if (!validator.isStrongPassword(value)) {
+          throw new Error("Please enter a Strong Password");
+        }
+      },
     },
     age: {
       type: Number,
@@ -39,6 +50,12 @@ const userSchema = new mongoose.Schema(
     photourl: {
       type: String,
       default: "https://www.360legal.in/wp-content/uploads/2021/01/nobody.jpg",
+      validate(value) {
+        if (!validator.isURL(value)) {
+          throw new Error("Please enter Valid Photo URL");
+          
+        }
+      }
     },
     about: {
       type: String,
