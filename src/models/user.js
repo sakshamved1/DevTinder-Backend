@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema(
   {
     firstName: {
       type: String,
-      required: true,
+      required: [true, "First Name is required"],
       maxLength: 20,
     },
     lastName: {
@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema(
     },
     email: {
       type: String,
-      required: true,
+      required: [true, "Email is required"],
       unique: true,
       lowercase: true,
       trim: true,
@@ -25,6 +25,7 @@ const userSchema = new mongoose.Schema(
     },
     age: {
       type: Number,
+      required: [true, "Age is required"],
       min: 18,
     },
     gender: {
@@ -32,20 +33,23 @@ const userSchema = new mongoose.Schema(
       validate(value) {
         if (!["male", "female", "others"].includes(value)) {
           throw new Error("Gender Data is not valid");
-          
         }
-      }
+      },
     },
     photourl: {
       type: String,
-      default : "https://www.360legal.in/wp-content/uploads/2021/01/nobody.jpg"
+      default: "https://www.360legal.in/wp-content/uploads/2021/01/nobody.jpg",
     },
     about: {
       type: String,
-      default: "This is default About of User"
+      default: "This is default About of User",
     },
     skills: {
       type: [String],
+      validate: function (arr) {
+        return arr.length <= 4;
+      },
+      message: "You can enter max 4 SKills",
     },
   },
   {
