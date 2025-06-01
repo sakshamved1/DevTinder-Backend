@@ -85,6 +85,14 @@
     - NEVER TRUST req.body
 
 
+# E-09 Encrypting password
+
+    - Validate Data in signup Api
+    - Install bcrypt package
+    - create passowordHash using bcrypt.hash & save the user is excrupted password
+
+    - 
+
 
 
 

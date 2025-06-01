@@ -7,6 +7,7 @@ const userSchema = new mongoose.Schema(
     firstName: {
       type: String,
       required: [true, "First Name is required"],
+      minLength: 4,
       maxLength: 20,
     },
     lastName: {
@@ -36,7 +37,7 @@ const userSchema = new mongoose.Schema(
     },
     age: {
       type: Number,
-      required: [true, "Age is required"],
+      // required: [true, "Age is required"],
       min: 18,
     },
     gender: {
