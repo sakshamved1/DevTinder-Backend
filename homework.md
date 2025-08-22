@@ -89,9 +89,35 @@
 
     - Validate Data in signup Api
     - Install bcrypt package
-    - create passowordHash using bcrypt.hash & save the user is excrupted password
+    - create passowordHash using bcrypt.hash & save the user is encrypted password
 
-    - 
+    - Create login API
+    - Compare Passwords & throw an error if email or password is invalid
+
+
+# E-10 Authentication , JWT & cookies
+
+10.1
+    - Created Login API & checked User email and password if both are Valid Then Only Create JWT TOKEN &  add the token to the cookies and send back to client
+
+    - install cookie-parser
+    - just send dummy cookie to user
+    - Create GET /profile API and check if you get the cookie back
+    - Install jsonwebtoken
+    - In login api, After email and password validation Create JWT Token and send it to user in cookie
+    - Read the cookie inside your profile API and find the logged in User
+    
+10.2
+    - Created userAuth Middleware to Verify the cookie 
+    - userAUth Middleware
+    - Add the userAuth middleware in profile API and a new sendConnectionRequest API
+    - Set the expiry of JWT token  cookies to 7 Days
+
+10.3
+    - Create User Schemea method to getJWT()
+    - Create Userschema method to compare password(passwordInputByUser)
+
+
 
 
 
