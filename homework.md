@@ -118,13 +118,21 @@
     - Create Userschema method to compare password(passwordInputByUser)
 
 
+# E-11 Diving Into the API's and Express Router
 
+11.1
+    - Explore tinder API's
+    - Create list of all API you can think of in Dev Tinder
+    - Group multiple routes under repective routers
 
+11.2
+    - Read docs for express.router()
+    - Create routes folder for managing auth,profile,request router
+    - create authRouter, profileRouter, requestRouter
+    - Import this router in app.js
 
-
-
-
-
+11.3
+    - 
 
 
 
