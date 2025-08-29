@@ -22,11 +22,10 @@ const connectionRequestSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-connectionRequestSchema.pre("save", function (req, res, next) {
+connectionRequestSchema.pre("save", function ( next) {
   const connectionRequest = this;
 
   if (connectionRequest.toUserId.equals(connectionRequest.fromUserId)) {
-    // res.send("You can't send connection Request to Yourself");
     throw new Error("Can't send connection Request to yourself");
   }
 

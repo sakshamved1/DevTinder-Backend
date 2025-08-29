@@ -162,8 +162,24 @@
     - what is advanatge is ad
 vantage of indexes?
     - Read about logical Query in mongoDB
+    - ALWAYS THINK ABOUT CORNER CASES & Never Trust Request.body
 
-    
+
+# E-13 Ref, Populate & Thought process of writing APIs
+
+13.1 
+    - Create Request Review API
+    - Create POST /request/review/:status/:requestId API    
+        - Validate the :status to be either accepted or rejected
+        - Validate the :requestId exists in DB or not
+        - Validate that user cannot review request again if request is already accepted/rejected
+        - Validate that user cannot review request if request is ignored
+        - Validate that user cannot review request if request is sent to some other user
+
+13.2
+    - 
+
+
 
 
 
