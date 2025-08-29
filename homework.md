@@ -128,15 +128,42 @@
 11.2
     - Read docs for express.router()
     - Create routes folder for managing auth,profile,request router
-    - create authRouter, profileRouter, requestRouter
+    - create authRouter, profileRouter, requestRouter -  API's Clubbing
     - Import this router in app.js
 
 11.3
-    - 
+    - Create POST /logout api
+    - Create PATCH /profile api
+    - Create PATCH /profile/password API => forgot password API
+    - Make sure you validate all data in Post , patch APi's
 
 
 
+# E-12 Logical DB Query & Compound Indexes.
 
+12.1 
+    - Create a new Schema for Connection Request
+    - Create a new model for Connection Request
+    - Proper Validation in of data
+    - Create a new API to send connection request
+    - Create POST /request/send/:status/:userId API
+        - Validate the :status to be either interested or ignored
+        - Validate the :userId exists in DB or not
+        - Validate that user cannot send request again if request is already pending
+        - Validate that user cannot send request to himself
+
+    - $or Query and $and Query in mongooose
+    - schema.pre("save) function
+ 
+12.2
+    - Read article about compound indexes in mongoDB
+    - Read indexes in MongoDB
+    - why do we need index in DB?
+    - what is advanatge is ad
+vantage of indexes?
+    - Read about logical Query in mongoDB
+
+    
 
 
 

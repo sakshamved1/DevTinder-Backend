@@ -63,6 +63,8 @@ const userSchema = new mongoose.Schema(
     about: {
       type: String,
       default: "This is default About of User",
+      maxLength: 40
+      
     },
     skills: {
       type: [String],
@@ -98,6 +100,8 @@ userSchema.methods.validatePassword = async function (passwordInputByUser) {
 
   return isPasswordValid;
 };
+
+userSchema.index({firstName: 1, lastName: 1}); //Make query faster
 
 // created User model
 module.exports = mongoose.model("User", userSchema);
