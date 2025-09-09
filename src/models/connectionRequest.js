@@ -5,10 +5,13 @@ const connectionRequestSchema = new mongoose.Schema(
     fromUserId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref : "User" //Reference to user collection
     },
     toUserId: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
+      ref : "User" //Reference to user collection
+
     },
     status: {
       type: String,
@@ -31,6 +34,7 @@ connectionRequestSchema.pre("save", function ( next) {
 
   next();
 })
+
 
 
 

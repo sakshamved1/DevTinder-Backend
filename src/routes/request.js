@@ -5,10 +5,9 @@ const requestRouter = express.Router();
 const { userAuth } = require("../middlewares/auth");
 
 const { ConnectionRequestModel } = require("../models/connectionRequest");
-const User = require("../models/user")
+const User = require("../models/user");
 
-const mongoose =  require('mongoose');
-
+const mongoose = require("mongoose");
 
 requestRouter.post(
   "/request/send/:status/:userId",
@@ -40,7 +39,7 @@ requestRouter.post(
         ],
       });
 
-      console.log(existingConnectionRequest);
+      // console.log(existingConnectionRequest);
 
       if (existingConnectionRequest) {
         return res
@@ -54,14 +53,15 @@ requestRouter.post(
         status,
       });
 
-      console.log(connectionRequest);
+      // console.log(connectionRequest);
 
       const data = await connectionRequest.save();
 
-      res.send("Connection Request Sent successfully");
+      // res.json(fromUserId.firstName )
 
-
-
+      res.status(201).json({
+        message: `${fromUserId} is ${status} in ${toUserId}`,
+      });
     } catch (err) {
       res.status(400).send("ERROR : " + err.message);
     }
@@ -69,92 +69,49 @@ requestRouter.post(
 );
 
 
-requestRouter.post("/request/review/:status/:requestId", userAuth, async (req, res) => {
 
-  try {
-    const loggedInUser = req.user;
-    const  {status, requestId} = req.params;
+requestRouter.post(
+  "/request/review/:status/:requestId",
+  userAuth,
+  async (req, res) => {
+    try {
+      const loggedInUser = req.user;
+      const { status, requestId } = req.params;
 
-    const ALLOWED_STATUS = ["accepted", "rejected"];
+      const ALLOWED_STATUS = ["accepted", "rejected"];
 
-    //status vvalidation
-    if (!ALLOWED_STATUS.includes(status)) {
-      return res.status(400).json({message : "status is not Allowed!!"});
+      //checked status
+      if (!ALLOWED_STATUS.includes(status)) {
+        return res.json({ message: "Status not Allowed" });
+      }
+
+      //check requestid
+      const connectionRequest = await ConnectionRequestModel.findOne({
+        _id: requestId,
+        toUserId: loggedInUser._id,
+        status: "interested",
+      });
+
+      if (!connectionRequest) {
+        return res.json({ message: "connection request not found" });
+      }
+
+      //change status and save
+      connectionRequest.status = status;
+      const data = await connectionRequest.save();
+
+      res.json({ message: "connection request is : " + status, data });
+
+      // saksham > elon
+
+      // Data validation
+      // check requestId exist om DB
+      // status == "interested"
+      // loggedInUser = toUserId
+    } catch (err) {
+      res.status(400).send("ERROR : " + err.message);
     }
-
-
-    //check if connection request  exist
-    const connectionRequest = await ConnectionRequestModel.findOne({
-      _id : requestId,
-      toUserId: loggedInUser._id,
-      status: "interested"
-    })
-
-    if (!connectionRequest) {
-      return res.status(400).json({message: "Connection Request not found !!!"});
-    }
-
-    connectionRequest.status = status; //Changed status
-
-    const data =  await connectionRequest.save();
-
-    res.json({message : "Connection request : " + status, data});
-
-    //Validation of data
-    // saksham => Elon
-    
-    // request Id should be valid
-    // loggedInUser = toUserId; 
-    // status  == interested
-    // throw error if request not found
-
-
-  } catch (err) {
-    res.status(400).send("ERROR : " + err.message);
   }
-})
-
-
-
-// requestRouter.post("/request/review/:status/:requestId", userAuth, async (req, res) => {
-//   try {
-//     const loggedInUser = req.user;
-//     const { status, requestId } = req.params;
-
-//     const ALLOWED_STATUS = ["accepted", "rejected"];
-
-//     // Validate status param
-//     if (!ALLOWED_STATUS.includes(status)) {
-//       return res.status(400).json({ message: "Status is not allowed!" });
-//     }
-
-//     // Validate requestId format
-//     if (!mongoose.Types.ObjectId.isValid(requestId)) {
-//       return res.status(400).json({ message: "Invalid requestId" });
-//     }
-
-//     // Find the connection request (single doc)
-//     const connectionRequest = await ConnectionRequestModel.findOne({
-//       _id: requestId,
-//       toUserId: loggedInUser._id,
-//       status: "interested",
-//     });
-
-//     if (!connectionRequest) {
-//       return res.status(404).json({ message: "Connection Request not found!" });
-//     }
-
-//     // Update status and save
-//     connectionRequest.status = status;
-//     const data = await connectionRequest.save();
-
-//     res.json({ message: `Connection request ${status}`, data });
-
-//   } catch (err) {
-//     res.status(500).send("ERROR: " + err.message);
-//   }
-// });
-
-
+);
 
 module.exports = requestRouter;
